@@ -1,0 +1,17 @@
+.venv/bin/python scripts/avro_evolution.py ../mmbd-lab1/data
+строк процессинга за июль: 782,389
+Avro записан за 36.6 с
+  txn_july.jsonl           146.7 МБ
+  txn_july.avro             16.0 МБ
+  txn_july.parquet          10.9 МБ
+схема писателя (из заголовка файла): ['txn_id', 'txn_ts', 'card_id', 'mcc', 'channel', 'amount', 'currency', 'status', 'decline_reason']
+первая запись: {'txn_id': '2026-07-00719735', 'txn_ts': datetime.datetime(2026, 6, 30, 21, 0, 58, tzinfo=datetime.timezone.utc), 'card_id': 'K2016652', 'mcc': '5912', 'channel': 'pos', 'amount': 1576.86, 'currency': 'RUB', 'status': 'approved', 'decline_reason': None}
+v2-читатель читает v1-файл, terminal_id = None
+v3: ожидаемая ошибка SchemaResolutionError: No default value for field terminal_id in sinitsa.processing.Transaction
+v4 без aliases: ожидаемая ошибка SchemaResolutionError: No default value for field amount_orig in sinitsa.processing.Transaction
+v4 с aliases: amount_orig = 1576.86 — значение сохранено
+Сумма amount Avro: 1882616818.91; время 1.305464 с
+Сумма amount Parquet: 1882616818.91; время 0.361204 с
+Отношение времени Avro / Parquet: 3.6
+Суммы совпадают с допуском для double
+Parquet: сжатые column chunks amount = 2943485 байт (без footer)

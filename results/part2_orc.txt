@@ -1,0 +1,27 @@
+.venv/bin/python scripts/orc_export.py
+txn_wide → Arrow: 2,312,606 строк, 963 МБ в памяти
+ORC (zstd) записан за 2.1 с
+  txn.orc               129.5 МБ
+  txn_zstd.parquet       89.7 МБ
+чтение 3 колонок из 28 (pyarrow, лучшее из 3):
+  Parquet: 0.013 с
+Traceback (most recent call last):
+  File "/Users/varvara/Projects/mmbd-lab2/scripts/orc_export.py", line 48, in <module>
+    print(f"  ORC:     {bench(lambda: orc.read_table(DATA / 'txn.orc', columns=COLS)):.3f} с")
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/varvara/Projects/mmbd-lab2/scripts/orc_export.py", line 41, in bench
+    fn()
+  File "/Users/varvara/Projects/mmbd-lab2/scripts/orc_export.py", line 48, in <lambda>
+    print(f"  ORC:     {bench(lambda: orc.read_table(DATA / 'txn.orc', columns=COLS)):.3f} с")
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/varvara/Projects/mmbd-lab2/.venv/lib/python3.11/site-packages/pyarrow/orc.py", line 308, in read_table
+    result = ORCFile(source).read(columns=columns)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/varvara/Projects/mmbd-lab2/.venv/lib/python3.11/site-packages/pyarrow/orc.py", line 187, in read
+    return self.reader.read(columns=columns)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/_orc.pyx", line 378, in pyarrow._orc.ORCReader.read
+  File "pyarrow/error.pxi", line 155, in pyarrow.lib.pyarrow_internal_check_status
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+OSError: sysctlbyname failed for 'hw.l1dcachesize'
+make: *** [orc] Error 1

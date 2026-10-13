@@ -1,0 +1,35 @@
+{
+  "seconds": {
+    "DuckDB → Arrow Table (.to_arrow_table())": 0.43518129199947,
+    "Arrow → Polars (pl.from_arrow)": 0.36052050000034797,
+    "Polars: group_by федеральный округ": 0.06992108399936114,
+    "Polars DataFrame → снова запрос DuckDB (через Arrow)": 0.8990384999997332,
+    "DuckDB → CSV на диск": 0.5633314169990626,
+    "CSV → Polars (read_csv)": 0.24836912499995378,
+    "DuckDB → pandas (.df())": 5.271059500000774,
+    "pandas → Polars (pl.from_pandas)": 0.31101241699980164
+  },
+  "shape": [
+    2312606,
+    28
+  ],
+  "pandas_version": "3.0.6",
+  "pandas_fio_dtype": "str",
+  "pandas_fio_array": "ArrowStringArray",
+  "arrow_schema": "txn_id: string\ntxn_ts: timestamp[us]\ntxn_date: date32[day]\nchannel: string\nstatus: string\ndecline_reason: string\nmcc: string\namount_orig: double\ncurrency: string\namount_rub: double\norig_txn_id: string\ncard_id: string\npayment_system: string\naccount_id: string\nproduct_code: string\nproduct_name: string\nclient_id: string\nfio: string\ngender: string\nbirth_date: date32[day]\nsegment: string\ncity: string\nregion: string\nfederal_district: string\nmerchant_id: string\nmerchant_name: string\ncategory: string\nmerchant_name_raw: string",
+  "parquet_types": [
+    [
+      "txn_ts",
+      "INT64",
+      "TIMESTAMP_MICROS",
+      "TimestampType(isAdjustedToUTC=0, unit=TimeUnit(MILLIS=<null>, MICROS=MicroSeconds(), NANOS=<null>))"
+    ],
+    [
+      "fio",
+      "BYTE_ARRAY",
+      "UTF8",
+      null
+    ]
+  ],
+  "arrow_pandas_equal": true
+}

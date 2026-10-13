@@ -1,0 +1,49 @@
+.venv/bin/python scripts/arrow_demo.py
+Путь 1 — через Arrow:
+  DuckDB → Arrow Table (.to_arrow_table())                  0.435 с
+  Arrow → Polars (pl.from_arrow)                            0.361 с
+  Polars: group_by федеральный округ                        0.070 с
+  Polars DataFrame → снова запрос DuckDB (через Arrow)      0.899 с
+Путь 2 — через файл (так делали до Arrow):
+  DuckDB → CSV на диск                                      0.563 с
+  CSV → Polars (read_csv)                                   0.248 с
+Путь 3 — через pandas:
+  DuckDB → pandas (.df())                                   5.271 с
+  pandas → Polars (pl.from_pandas)                          0.311 с
+pandas: 3.0.6 fio dtype: str
+pandas fio array: ArrowStringArray
+Проверка Arrow / pandas: все значения таблиц совпадают
+Arrow schema:
+txn_id: string
+txn_ts: timestamp[us]
+txn_date: date32[day]
+channel: string
+status: string
+decline_reason: string
+mcc: string
+amount_orig: double
+currency: string
+amount_rub: double
+orig_txn_id: string
+card_id: string
+payment_system: string
+account_id: string
+product_code: string
+product_name: string
+client_id: string
+fio: string
+gender: string
+birth_date: date32[day]
+segment: string
+city: string
+region: string
+federal_district: string
+merchant_id: string
+merchant_name: string
+category: string
+merchant_name_raw: string
+Parquet: name, physical type, converted type, logical type
+('txn_ts', 'INT64', 'TIMESTAMP_MICROS', 'TimestampType(isAdjustedToUTC=0, unit=TimeUnit(MILLIS=<null>, MICROS=MicroSeconds(), NANOS=<null>))')
+('fio', 'BYTE_ARRAY', 'UTF8', None)
+Arrow txn_ts: timestamp[us]
+Arrow fio: string

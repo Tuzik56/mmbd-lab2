@@ -1,0 +1,13 @@
+Источник: вывод запуска make orc в обычном терминале, предоставленный пользователем.
+.venv/bin/python scripts/orc_export.py
+txn_wide → Arrow: 2,312,606 строк, 963 МБ в памяти
+ORC (zstd) записан за 2.0 с
+  txn.orc               129.5 МБ
+  txn_zstd.parquet       89.7 МБ
+чтение 3 колонок из 28 (pyarrow, лучшее из 3):
+  Parquet: 0.011 с
+  ORC:     0.074 с
+чтение всех 28 колонок:
+  Parquet: 0.107 с
+  ORC:     0.945 с
+ORC: stripes = 2, строк = 2,312,606, сжатие = ZSTD
